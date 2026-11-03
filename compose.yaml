@@ -57,7 +57,7 @@ services:
       - |
         ollama serve &
         sleep 5
-        ollama pull ${QWEN_MODEL} && ollama pull ${EMBED_MODEL}
+        ollama pull ${CHAT_MODEL} && ollama pull ${EMBED_MODEL}
         kill $!
     restart: "no"
 
@@ -153,4 +153,4 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: ~/.ollama
+      device: ${PWD}/.ollama
