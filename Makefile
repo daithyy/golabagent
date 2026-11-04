@@ -38,3 +38,6 @@ eval:
 lint:
 	go vet ./...
 	go vet -tags=eval ./evals
+
+test:
+	go test ./...
