@@ -10,10 +10,12 @@ import (
 )
 
 type Cfg struct {
-	ServerPort     string `env:"SERVER_PORT"`
-	OllamaPort     string `env:"OLLAMA_PORT"`
-	EmbeddingModel string `env:"EMBED_MODEL"`
-	ChatModel      string `env:"CHAT_MODEL"`
+	ServerPort string `env:"SERVER_PORT" envDefault:"8000"`
+
+	OllamaHost     string `env:"OLLAMA_HOST" envDefault:"localhost"`
+	OllamaPort     string `env:"OLLAMA_PORT" envDefault:"11434"`
+	EmbeddingModel string `env:"EMBED_MODEL" envDefault:"nomic-embed-text"`
+	ChatModel      string `env:"CHAT_MODEL" envDefault:"qwen3.5:9b"`
 	ChatThink      bool   `env:"CHAT_THINK" envDefault:"false"` // on is slow
 	ChatNumCtx     int    `env:"CHAT_NUM_CTX" envDefault:"16384"`
 
@@ -50,4 +52,8 @@ func (c Cfg) PostgresDSN() string {
 
 func (c Cfg) TemporalAddress() string {
 	return c.TemporalHost + ":" + c.TemporalPort
+}
+
+func (c Cfg) OllamaURL() string {
+	return fmt.Sprintf("http://%s:%s", c.OllamaHost, c.OllamaPort)
 }
