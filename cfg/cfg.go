@@ -1,6 +1,10 @@
 package cfg
 
 import (
+	"errors"
+	"fmt"
+	"io/fs"
+
 	"github.com/caarlos0/env"
 	"github.com/joho/godotenv"
 )
@@ -10,14 +14,20 @@ type Cfg struct {
 	OllamaPort     string `env:"OLLAMA_PORT"`
 	EmbeddingModel string `env:"EMBED_MODEL"`
 	ChatModel      string `env:"CHAT_MODEL"`
-	PostgresPort   string `env:"POSTGRES_PORT"`
+	ChatThink      bool   `env:"CHAT_THINK" envDefault:"false"` // on is slow
+	ChatNumCtx     int    `env:"CHAT_NUM_CTX" envDefault:"16384"`
+
+	PostgresHost     string `env:"POSTGRES_HOST" envDefault:"localhost"`
+	PostgresPort     string `env:"POSTGRES_PORT" envDefault:"5432"`
+	PostgresUser     string `env:"POSTGRES_USER" envDefault:"postgres"`
+	PostgresPassword string `env:"POSTGRES_PASSWORD"`
+	PostgresName     string `env:"POSTGRES_NAME" envDefault:"pgvectordb"`
 }
 
 var Config Cfg
 
-func Parse() error {
-	err := godotenv.Load()
-	if err != nil {
+func Parse(envFile string) error {
+	if err := godotenv.Load(envFile); err != nil && !errors.Is(err, fs.ErrNotExist) {
 		return err
 	}
 
@@ -26,4 +36,9 @@ func Parse() error {
 	}
 
 	return nil
+}
+
+func (c Cfg) PostgresDSN() string {
+	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		c.PostgresUser, c.PostgresPassword, c.PostgresHost, c.PostgresPort, c.PostgresName)
 }
