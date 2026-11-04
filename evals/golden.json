@@ -1,0 +1,190 @@
+[
+  {
+    "id": "young-driver-frequency",
+    "question": "Which driver age band has the highest claim frequency?",
+    "expect_all": [
+      [
+        "18-25",
+        "18–25",
+        "18 to 25",
+        "under 26",
+        "re:\\b25\\b"
+      ]
+    ],
+    "expect_tools": [
+      "query_portfolio_db"
+    ]
+  },
+  {
+    "id": "area-frequency",
+    "question": "Which area has the highest claim frequency, and which has the lowest?",
+    "expect_all": [
+      [
+        "re:\\barea\\s*\\**F\\b",
+        "re:\\bF\\b.{0,40}highest",
+        "re:highest.{0,60}\\bF\\b"
+      ],
+      [
+        "re:\\bA\\b"
+      ]
+    ],
+    "expect_tools": [
+      "query_portfolio_db"
+    ]
+  },
+  {
+    "id": "bonus-malus-frequency",
+    "question": "How does claim frequency compare between policies at the maximum bonus and policies in malus?",
+    "expect_all": [
+      [
+        "re:0\\.08",
+        "re:\\b8\\.0\\s?%"
+      ],
+      [
+        "re:0\\.37",
+        "re:0\\.38",
+        "re:37\\.[56]"
+      ]
+    ],
+    "expect_tools": [
+      "query_portfolio_db"
+    ]
+  },
+  {
+    "id": "max-bonus-count",
+    "question": "How many policies are at the maximum bonus?",
+    "expect_all": [
+      [
+        "384156"
+      ]
+    ],
+    "expect_tools": [
+      "query_portfolio_db"
+    ]
+  },
+  {
+    "id": "irish-claims-cost",
+    "question": "What was the average claims cost per policy in the Irish private motor market in 2025?",
+    "expect_all": [
+      [
+        "424"
+      ]
+    ],
+    "expect_tools": [
+      "search_docs"
+    ],
+    "expect_sources": [
+      "cbi-ncid-private-motor-report-8.pdf"
+    ]
+  },
+  {
+    "id": "irish-cor",
+    "question": "What was the combined operating ratio for Irish private motor insurance in 2025?",
+    "expect_all": [
+      [
+        "93"
+      ]
+    ],
+    "expect_tools": [
+      "search_docs"
+    ],
+    "expect_sources": [
+      "cbi-ncid-private-motor-report-8.pdf"
+    ]
+  },
+  {
+    "id": "portfolio-vs-market",
+    "question": "How does our portfolio's pure premium compare with the average claims cost per policy in the Irish private motor market?",
+    "expect_all": [
+      [
+        "re:16[67]"
+      ],
+      [
+        "424"
+      ]
+    ],
+    "expect_tools": [
+      "query_portfolio_db",
+      "search_docs"
+    ],
+    "expect_sources": [
+      "cbi-ncid-private-motor-report-8.pdf"
+    ]
+  },
+  {
+    "id": "price-walking",
+    "question": "What is price walking, and what did the Central Bank of Ireland do about it?",
+    "expect_all": [
+      [
+        "renew",
+        "loyal",
+        "tenure",
+        "existing customers"
+      ],
+      [
+        "ban",
+        "prohibit"
+      ]
+    ],
+    "expect_tools": [
+      "search_docs"
+    ],
+    "expect_sources": [
+      "cbi-differential-pricing-review.pdf"
+    ]
+  },
+  {
+    "id": "eiopa-ai-governance",
+    "question": "What does EIOPA expect from insurers that use AI systems?",
+    "expect_all": [
+      [
+        "explainab"
+      ],
+      [
+        "oversight",
+        "fairness",
+        "data governance"
+      ]
+    ],
+    "expect_tools": [
+      "search_docs"
+    ],
+    "expect_sources": [
+      "eiopa-ai-governance-opinion-2025.pdf"
+    ]
+  },
+  {
+    "id": "bonus-malus-rules",
+    "question": "Under the French rules, how many claim-free years does it take to reach the maximum bonus?",
+    "expect_all": [
+      [
+        "13",
+        "thirteen"
+      ]
+    ],
+    "expect_tools": [
+      "search_docs"
+    ],
+    "expect_sources": [
+      "bonus-malus-rules.md"
+    ]
+  },
+  {
+    "id": "no-gender-data",
+    "question": "What is the claim frequency for female drivers?",
+    "expect_all": [
+      [
+        "gender",
+        "sex",
+        "female"
+      ],
+      [
+        "not",
+        "no ",
+        "cannot",
+        "unable"
+      ]
+    ],
+    "expect_tools": []
+  }
+]
