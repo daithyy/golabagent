@@ -1,0 +1,40 @@
+{
+  "download_dir": "data/external",
+  "notes_dir": "data/docs",
+  "portfolio": {
+    "policies": {
+      "file": "freMTPL2freq.arff",
+      "url": "https://openml.org/data/v1/download/20649148/freMTPL2freq.arff",
+      "title": "freMTPL2freq: French motor third-party liability policies (OpenML 41214)",
+      "licence": "CC0",
+      "attribution": "C. Dutang and A. Charpentier (2018), CASdatasets: Insurance datasets"
+    },
+    "claims": {
+      "file": "freMTPL2sev.arff",
+      "url": "https://openml.org/data/v1/download/20649149/freMTPL2sev.arff",
+      "title": "freMTPL2sev: French motor third-party liability claim amounts (OpenML 41215)",
+      "licence": "CC0",
+      "attribution": "C. Dutang and A. Charpentier (2018), CASdatasets: Insurance datasets"
+    }
+  },
+  "documents": [
+    {
+      "file": "cbi-ncid-private-motor-report-8.pdf",
+      "url": "https://www.centralbank.ie/docs/default-source/statistics/data-and-analysis/national-claims-information-database/ncid-private-motor-insurance-report-8.pdf",
+      "title": "Central Bank of Ireland, National Claims Information Database: Private Motor Insurance Report 8 (October 2026)",
+      "attribution": "Central Bank of Ireland"
+    },
+    {
+      "file": "cbi-differential-pricing-review.pdf",
+      "url": "https://www.centralbank.ie/docs/default-source/regulation/industry-market-sectors/insurance-reinsurance/differential-pricing/review-of-differential-pricing-regulations-in-the-private-car-and-home-insurance-market.pdf",
+      "title": "Central Bank of Ireland, Review of Differential Pricing Regulations in the Private Car and Home Insurance Markets",
+      "attribution": "Central Bank of Ireland"
+    },
+    {
+      "file": "eiopa-ai-governance-opinion-2025.pdf",
+      "url": "https://www.eiopa.europa.eu/document/download/88342342-a17f-4f88-842f-bf62c93012d6_en?filename=Opinion+on+Artificial+Intelligence+governance+and+risk+management.pdf",
+      "title": "EIOPA, Opinion on Artificial Intelligence Governance and Risk Management (EIOPA-BoS-25-360, August 2025)",
+      "attribution": "European Insurance and Occupational Pensions Authority"
+    }
+  ]
+}
