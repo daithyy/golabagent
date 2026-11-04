@@ -22,6 +22,11 @@ type Cfg struct {
 	PostgresUser     string `env:"POSTGRES_USER" envDefault:"postgres"`
 	PostgresPassword string `env:"POSTGRES_PASSWORD"`
 	PostgresName     string `env:"POSTGRES_NAME" envDefault:"pgvectordb"`
+
+	TemporalHost      string `env:"TEMPORAL_HOST" envDefault:"localhost"`
+	TemporalPort      string `env:"TEMPORAL_PORT" envDefault:"7233"`
+	TemporalNamespace string `env:"TEMPORAL_NAMESPACE" envDefault:"default"`
+	TemporalTaskQueue string `env:"TEMPORAL_TASK_QUEUE" envDefault:"golabagent"`
 }
 
 var Config Cfg
@@ -41,4 +46,8 @@ func Parse(envFile string) error {
 func (c Cfg) PostgresDSN() string {
 	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
 		c.PostgresUser, c.PostgresPassword, c.PostgresHost, c.PostgresPort, c.PostgresName)
+}
+
+func (c Cfg) TemporalAddress() string {
+	return c.TemporalHost + ":" + c.TemporalPort
 }
