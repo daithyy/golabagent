@@ -2,7 +2,7 @@ PORT ?= $(shell grep -E '^SERVER_PORT=' .env 2>/dev/null | cut -d= -f2)
 URL ?= http://localhost:$(or $(PORT),8000)
 Q ?= Which driver age band has the highest claim frequency, and how does our claims cost per policy compare with the Irish market?
 
-.PHONY: env up down build run mcp import search ask eval lint
+.PHONY: env up down build run mcp import search ask eval lint test clear clean
 
 env:
 	./scripts/env.sh
@@ -41,3 +41,10 @@ lint:
 
 test:
 	go test ./...
+
+clear:
+	rm -rf data/external/*
+	docker exec psql-pgvector psql -U postgres -d pgvectordb -c "delete from rag.documents"
+
+clean:
+	docker run --rm --network temporal-network temporalio/admin-tools:1.30.8 temporal --address temporal:7233 workflow delete -n default --query 'ExecutionStatus != "Running"' --yes
